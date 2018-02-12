@@ -1,3 +1,3 @@
 # BinaryConnect
-This is a pytorch implementation of BinaryConnect on Wide Residual Networks (WideResNets).
+This is a pytorch implementation of Binary Connect on Wide Residual Networks (WideResNets).
 
