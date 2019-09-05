@@ -163,7 +163,7 @@ def train(train_loader, model, criterion, optimizer, epoch,bin_op):
         input = input.cuda()
         input_var = torch.autograd.Variable(input)
         target_var = torch.autograd.Variable(target)
-        bin_op.binarization()
+        bin_op.binarization() # use bin_op.BWN() instead for Binary Weight Network 
         # compute output
         output = model(input_var)
         loss = criterion(output, target_var)
@@ -178,7 +178,7 @@ def train(train_loader, model, criterion, optimizer, epoch,bin_op):
         loss.backward()
         bin_op.restore()
         optimizer.step()
-        bin_op.clip()
+        bin_op.clip() # comment this line when using Binary Weight Network
         # measure elapsed time
         batch_time.update(time.time() - end)
         end = time.time()
@@ -205,7 +205,7 @@ def validate(val_loader, model, criterion, epoch,bin_op):
     model.eval()
 
     end = time.time()
-    bin_op.binarization()
+    bin_op.binarization() # use bin_op.BWN() instead for Binary Weight Network
     for i, (input, target) in enumerate(val_loader):
         target = target.cuda(async=True)
         input = input.cuda()
